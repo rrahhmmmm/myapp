@@ -63,6 +63,7 @@ Route::get('arsip', function () {
         return view('retensi');
     })->name('retensi');
 
+    /* INVENTARIS ROUTES - DISABLED
     Route::get('/inventaris', function () {
         return view('inventaris');
     })->name('inventaris');
@@ -71,7 +72,7 @@ Route::get('arsip', function () {
         return view('Tinven', ['nama_terminal' => $NAMA_TERMINAL]);
     })->name('portal.terminal');
 
-    
+
     Route::get('/portal/terminal/{id}', function ($id) {
         $terminal = M_terminal::findOrFail($id);
         return view('Tinven', [
@@ -79,6 +80,7 @@ Route::get('arsip', function () {
             'nama_terminal' => $terminal->NAMA_TERMINAL
         ]);
     })->name('portal.terminal');
+    */
 
     Route::get('/jenisnaskah', function () {
         return view('jenisnaskahdinas');
@@ -88,14 +90,17 @@ Route::get('arsip', function () {
         return view ('jenispengembangan');
     })->name('jenispengembangan');
 
+    /* INVENTARIS ROUTES - DISABLED
     Route::get('/kondisi', function () {
         return view ('kondisi');
     })->name('kondisi');
+    */
 
     Route::get('/coba', function () {
         return view ('cobacoba');
     });
 
+    /* INVENTARIS ROUTES - DISABLED
     // Master Inventaris routes
     Route::get('/instal', function () {
         return view('instal');
@@ -110,3 +115,4 @@ Route::get('arsip', function () {
     })->name('merk');
 
     Route::get('/dashboard-inventaris', [DashboardInventarisController::class, 'index'])->name('dashboard-inventaris');
+    */

@@ -87,6 +87,7 @@ Route::get('/role/export-template', [M_ROLECONTROLLER::class,'exportTemplate']);
 Route::get('/jenisnaskah/export', [M_JENISNASKAHCONTROLLER::class, 'exportExcel']);
 Route::get('/jenisnaskah/export-template', [M_JENISNASKAHCONTROLLER::class, 'exportTemplate']);
 
+/* INVENTARIS ROUTES - DISABLED
 // Master Inventaris Export routes
 Route::get('/instal/export', [M_INSTALCONTROLLER::class, 'exportExcel']);
 Route::get('/instal/export-template', [M_INSTALCONTROLLER::class, 'exportTemplate']);
@@ -99,6 +100,7 @@ Route::get('/merk/export-template', [M_MERKCONTROLLER::class, 'exportTemplate'])
 Route::get('/m_instal/paginated', [M_INSTALCONTROLLER::class, 'indexPaginated']);
 Route::get('/m_anggaran/paginated', [M_ANGGARANCONTROLLER::class, 'indexPaginated']);
 Route::get('/m_merk/paginated', [M_MERKCONTROLLER::class, 'indexPaginated']);
+*/
 
 
 
@@ -120,8 +122,10 @@ Route::middleware('auth:sanctum' )->group(function () {
 
     Route::get('/m_retensi/all', [M_RETENSICONTROLLER::class, 'all']);
 
+    /* INVENTARIS ROUTES - DISABLED
     Route::get('m_kondisi', [M_KONDISICONTROLLER::class, 'index']);
     Route::get('/m_kondisi/all', [M_KONDISICONTROLLER::class, 'all']);
+    */
 
     Route::get('m_jenisnaskah', [M_JENISNASKAHCONTROLLER::class, 'index']);
     Route::get('m_jenisnaskah/all', [M_JENISNASKAHCONTROLLER::class, 'all']);
@@ -147,6 +151,7 @@ Route::middleware('auth:sanctum' )->group(function () {
 
     Route::apiResource('m_terminal', M_TERMINALCONTROLLER::class);
 
+    /* INVENTARIS ROUTES - DISABLED
     // Inventaris Transaction routes
     Route::get('/inventaris/export', [T_INVENTARISCONTROLLER::class, 'exportExcel']);
     Route::get('/inventaris/export-template', [T_INVENTARISCONTROLLER::class, 'exportTemplate']);
@@ -160,6 +165,7 @@ Route::middleware('auth:sanctum' )->group(function () {
 
     // Dashboard Inventaris
     Route::get('/dashboard-inventaris/statistics', [DashboardInventarisController::class, 'getStatistics']);
+    */
 });
 
 Route::middleware('auth:sanctum','role:ADMIN')->group(function () {
@@ -193,9 +199,11 @@ Route::middleware('auth:sanctum','role:ADMIN')->group(function () {
     Route::put('m_indeks/{id}', [M_indeksController::class, 'update']);
     Route::delete('m_indeks/{id}', [M_indeksController::class, 'destroy']);
 
+    /* INVENTARIS ROUTES - DISABLED
     Route::post('m_kondisi', [M_KONDISICONTROLLER::class, 'store']);
     Route::put('m_kondisi/{id}', [M_KONDISICONTROLLER::class, 'update']);
     Route::delete('m_kondisi/{id}', [M_KONDISICONTROLLER::class, 'destroy']);
+    */
 
     Route::post('m_tingkatpengembangan', [M_TINGKATPENGEMBANGANCONTROLLER::class,'store']);
     Route::put('m_tingkatpengembangan/{id}', [M_TINGKATPENGEMBANGANCONTROLLER::class,'update']);
@@ -206,6 +214,7 @@ Route::middleware('auth:sanctum','role:ADMIN')->group(function () {
     Route::delete('m_jenisnaskah/{id}', [M_JENISNASKAHCONTROLLER::class, 'destroy']);
     Route::post('jenisnaskah/import', [M_JENISNASKAHCONTROLLER::class, 'importExcel']);
 
+    /* INVENTARIS ROUTES - DISABLED
     // Master Inventaris CRUD routes
     Route::apiResource('m_instal', M_INSTALCONTROLLER::class);
     Route::post('/instal/import', [M_INSTALCONTROLLER::class, 'importExcel']);
@@ -215,4 +224,5 @@ Route::middleware('auth:sanctum','role:ADMIN')->group(function () {
 
     Route::apiResource('m_merk', M_MERKCONTROLLER::class);
     Route::post('/merk/import', [M_MERKCONTROLLER::class, 'importExcel']);
+    */
 });
