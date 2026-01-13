@@ -22,7 +22,7 @@
 
   <!-- Logo -->
   <div class="p-4 border-b shrink-0">
-    <img src="{{ asset('images/iktinven.png') }}" class="h-30 mx-auto">
+    <img src="{{ asset('images/logoarsipikt.png') }}" class="h-30 mx-auto">
   </div>
 
   <!-- Menu Scrollable -->

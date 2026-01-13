@@ -14,7 +14,7 @@
       <img src="/storage/bumn.png" alt="BUMN Logo" class="h-24 items-end" /> -->
     </div>
     <div class="flex justify-center items-center">
-      <img src="{{ asset('images/iktinven.png') }}" alt="IKT Logo" class="h-48 " />
+      <img src="{{ asset('images/logoarsipikt.png') }}" alt="IKT Logo" class="h-48 " />
     </div>
     <form id="loginForm" class="space-y-4">
       <div>
