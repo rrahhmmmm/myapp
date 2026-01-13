@@ -20,8 +20,10 @@ class DivisiExport implements FromCollection,ShouldAutoSize,WithHeadings
     public function headings(): array
     {
         return [
+            'ID_DIVISI',
             'NAMA DIVISI',
-            'DIBUAT OLEH'
+            'DIBUAT OLEH',
+            'CREATE_DATE'
         ];
     }
 }
