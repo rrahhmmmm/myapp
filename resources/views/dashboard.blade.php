@@ -652,10 +652,10 @@
     <p class="text-center text-gray-700 mb-6">Arsip ini sudah melewati masa retensi. Apakah Anda siap menyerahkannya ke SDM?</p>
     <div class="flex gap-3 justify-center">
       <button id="btnNantiMager" class="bg-gray-400 hover:bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold transition">
-        😴 LAIN KALI 😴
+      LAIN KALI 😴
       </button>
       <button id="btnSiapLaksanakan" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition">
-        ✅ SIAP LAKSANAKAN OTW SDM BANG ✅
+      SUDAH DISERAHKAN ✅
       </button>
     </div>
   </div>

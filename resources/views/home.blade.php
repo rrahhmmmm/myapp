@@ -50,22 +50,7 @@
     </div>
 
     <div class="relative z-10 min-h-full flex items-center justify-center p-6">
-      <div class="grid md:grid-cols-2 gap-8 max-w-4xl w-full mt-52">
-
-        <!-- Card Inventaris -->
-        <a 
-          id="cardInventaris"
-          href="#"
-          class="group relative bg-gray-400 cursor-not-allowed opacity-70 
-              rounded-2xl shadow-lg p-8 flex flex-col items-center justify-center transition transform">
-          <div class="bg-gray-200 text-gray-500 rounded-full p-6 mb-4 transition">
-            <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M3 4a1 1 0 0 1 1-1h4V2h8v1h4a1 1 0 0 1 1 1v4h-2V5H5v14h6v2H4a1 1 0 0 1-1-1V4zm17 7a1 1 0 0 0-1-1h-7a1 1 0 0 0-1 1v10h2v-4h5v4h2V11zm-2 3h-5v-2h5v2z"/>
-            </svg>
-          </div>
-          <h2 class="text-2xl font-semibold mb-2 text-white">INVENTARIS</h2>
-          <p class="text-white text-center opacity-90">Anda tidak memiliki akses ke menu ini.</p>
-        </a>
+      <div class="flex justify-center gap-8 max-w-4xl w-full mt-52">
 
         <!-- Card Arsip -->
         <a 
@@ -118,18 +103,9 @@
     const role = (user.role?.Nama_role || user.role?.nama_role || '').toUpperCase();
     const allowed = ['ADMIN', 'USER'].includes(role);
 
-    const cardInventaris = document.getElementById('cardInventaris');
     const cardArsip = document.getElementById('cardArsip');
 
     if (allowed) {
-      // aktifkan kartu inventaris
-      cardInventaris.href = '/dashboard-inventaris';
-      cardInventaris.classList.remove('bg-gray-400', 'cursor-not-allowed', 'opacity-70');
-      cardInventaris.classList.add('bg-[#224E9F]', 'cursor-pointer', 'hover:-translate-y-2', 'hover:shadow-2xl', 'hover:bg-[#1b3f80]');
-      cardInventaris.querySelector('div').classList.remove('bg-gray-200', 'text-gray-500');
-      cardInventaris.querySelector('div').classList.add('bg-white', 'text-[#224E9F]', 'group-hover:bg-[#1b3f80]', 'group-hover:text-white');
-      cardInventaris.querySelector('p').textContent = 'Kelola data barang dan aset perusahaan dengan mudah.';
-
       // aktifkan kartu arsip
       cardArsip.href = '/dashboard';
       cardArsip.classList.remove('bg-gray-400', 'cursor-not-allowed', 'opacity-70');
