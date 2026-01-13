@@ -6,6 +6,10 @@
   <title>Manajemen Arsip</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Flatpickr Date Picker -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/id.js"></script>
   <style>
     .modal { display: none; }
     .modal.show { display: flex; }
@@ -115,6 +119,42 @@
 
     .shake-btn {
         animation: shake 0.5s;
+    }
+
+    /* Flatpickr Custom Styling */
+    .flatpickr-calendar {
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .flatpickr-months .flatpickr-month {
+        background: #3b82f6;
+        color: white;
+        border-radius: 0.5rem 0.5rem 0 0;
+    }
+    .flatpickr-current-month .flatpickr-monthDropdown-months,
+    .flatpickr-current-month input.cur-year {
+        background: transparent;
+        color: white;
+        font-weight: 600;
+    }
+    .flatpickr-current-month .flatpickr-monthDropdown-months:hover {
+        background: rgba(255,255,255,0.1);
+    }
+    .flatpickr-months .flatpickr-prev-month,
+    .flatpickr-months .flatpickr-next-month {
+        fill: white;
+    }
+    .flatpickr-months .flatpickr-prev-month:hover,
+    .flatpickr-months .flatpickr-next-month:hover {
+        fill: #e5e7eb;
+    }
+    .flatpickr-day.selected {
+        background: #3b82f6;
+        border-color: #3b82f6;
+    }
+    .flatpickr-day.selected:hover {
+        background: #2563eb;
+        border-color: #2563eb;
     }
 
     /* notifikasi + inaktif arsip */
@@ -648,7 +688,7 @@
 <!-- modal notif -->
 <div id="confirmModal" class="confirm-modal">
   <div class="confirm-modal-content">
-    <h2 class="confirm-title">⚠️ SERAHKAN KE SDM SEKARANG!!! ⚠️</h2>
+  <h2 class="confirm-title">⚠️ SERAHKAN KE SDM SEKARANG!!! ⚠️</h2>
     <p class="text-center text-gray-700 mb-6">Arsip ini sudah melewati masa retensi. Apakah Anda siap menyerahkannya ke SDM?</p>
     <div class="flex gap-3 justify-center">
       <button id="btnNantiMager" class="bg-gray-400 hover:bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold transition">
@@ -783,7 +823,7 @@
       <!-- Tanggal Berkas -->
       <div>
         <label class="block text-sm font-medium mb-1">Tanggal Berkas <span class="text-red-500">*</span></label>
-        <input type="date" name="TANGGAL_BERKAS" id="TANGGAL_BERKAS" class="w-full border rounded-lg px-3 py-2">
+        <input type="text" name="TANGGAL_BERKAS" id="TANGGAL_BERKAS" class="w-full border rounded-lg px-3 py-2" placeholder="Pilih tanggal">
         <div class="error-message" id="error_TANGGAL_BERKAS"></div>
       </div>
 
@@ -855,7 +895,7 @@
       <!-- Tanggal Retensi -->
       <div>
         <label class="block text-sm font-medium mb-1">Tanggal Retensi <span class="text-red-500">*</span> </label>
-        <input type="date" id="TANGGAL_RETENSI" name="TANGGAL_RETENSI" class="w-full border rounded-lg px-3 py-2">
+        <input type="text" id="TANGGAL_RETENSI" name="TANGGAL_RETENSI" class="w-full border rounded-lg px-3 py-2" placeholder="Pilih tanggal">
         <div class="error-message" id="error_TANGGAL_RETENSI"></div>
       </div>
 
@@ -869,7 +909,7 @@
       <!-- Tanggal Inaktif (auto-calculate, bisa diedit) -->
       <div>
         <label class="block text-sm font-medium mb-1">Tanggal Inaktif</label>
-        <input type="date" id="TANGGAL_INAKTIF" name="TANGGAL_INAKTIF" class="w-full border rounded-lg px-3 py-2 bg-yellow-50 border-yellow-300 focus:bg-white focus:border-blue-500">
+        <input type="text" id="TANGGAL_INAKTIF" name="TANGGAL_INAKTIF" class="w-full border rounded-lg px-3 py-2 bg-yellow-50 border-yellow-300 focus:bg-white focus:border-blue-500" placeholder="Pilih tanggal">
         <div class="error-message" id="error_TANGGAL_INAKTIF"></div>
       </div>
 
@@ -956,6 +996,33 @@ const notificationList = document.getElementById("notificationList");
 // Autocomplete elements
 const indeksInput = document.getElementById("NO_INDEKS");
 const suggestionBox = document.getElementById("indeksSuggestions");
+
+// === FLATPICKR INITIALIZATION ===
+const flatpickrConfig = {
+    dateFormat: "Y-m-d",
+    altInput: true,
+    altFormat: "d F Y",
+    locale: "id",
+    allowInput: true,
+    disableMobile: true,
+    minDate: "2000-01-01",
+    maxDate: "2050-12-31"
+};
+
+// Inisialisasi datepicker TANGGAL_BERKAS
+const tanggalBerkasPicker = flatpickr("#TANGGAL_BERKAS", flatpickrConfig);
+
+// Inisialisasi datepicker TANGGAL_RETENSI dengan trigger calculateTanggalInaktif
+const tanggalRetensiPicker = flatpickr("#TANGGAL_RETENSI", {
+    ...flatpickrConfig,
+    onChange: function(selectedDates, dateStr) {
+        calculateTanggalInaktif();
+    }
+});
+
+// Inisialisasi Flatpickr untuk TANGGAL_INAKTIF
+const tanggalInaktifPicker = flatpickr("#TANGGAL_INAKTIF", flatpickrConfig);
+
 const klasifikasiInput = document.getElementById("KODE_KLASIFIKASI");
 const suggestionKlasifikasi = document.getElementById("klasifikasiSuggestions");
 const retensiInput = document.getElementById("TIPE_RETENSI");
@@ -1799,13 +1866,17 @@ addBtn.addEventListener("click", async () => {
   document.getElementById("arsipId").value = "";
   document.getElementById("modalTitle").innerText = "Tambah Arsip";
 
+  // Reset Flatpickr date pickers
+  tanggalBerkasPicker.clear();
+  tanggalRetensiPicker.clear();
+  tanggalInaktifPicker.clear();
+
   // Sembunyikan field KETERANGAN_UPDATE saat tambah baru
   document.getElementById("keteranganUpdateWrapper").classList.add("hidden");
   document.getElementById("KETERANGAN_UPDATE").value = "";
 
   // Reset field inaktif
   document.getElementById("MASA_INAKTIF").value = "";
-  document.getElementById("TANGGAL_INAKTIF").value = "";
   document.getElementById("KETERANGAN_INAKTIF").value = "";
   selectedRetensiData = null;
 
@@ -1942,6 +2013,17 @@ async function editArsip(id) {
       const el = document.getElementById(key);
       if (el) el.value = data[key] ?? "";
     });
+
+    //datepicker update value on form
+    if (data.TANGGAL_BERKAS) {
+      tanggalBerkasPicker.setDate(data.TANGGAL_BERKAS, true);
+    }
+    if (data.TANGGAL_RETENSI) {
+      tanggalRetensiPicker.setDate(data.TANGGAL_RETENSI, true);
+    }
+    if (data.TANGGAL_INAKTIF) {
+      tanggalInaktifPicker.setDate(data.TANGGAL_INAKTIF, true);
+    }
 
     // Parse lokasi simpan (KODE_LOKASI/Lemari/Baris/Box)
     if (data.RAK_BAK_URUTAN) {
@@ -2423,14 +2505,14 @@ function calculateTanggalInaktif() {
   const masaInaktif = document.getElementById("MASA_INAKTIF").value;
 
   if (!tanggalRetensi || !masaInaktif) {
-    document.getElementById("TANGGAL_INAKTIF").value = '';
+    tanggalInaktifPicker.clear();
     return;
   }
 
   // Extract angka dari masa inaktif (misal: "2 tahun" -> 2, "1 Tahun" -> 1)
   const angkaMatch = masaInaktif.match(/(\d+)/);
   if (!angkaMatch) {
-    document.getElementById("TANGGAL_INAKTIF").value = '';
+    tanggalInaktifPicker.clear();
     return;
   }
 
@@ -2439,7 +2521,7 @@ function calculateTanggalInaktif() {
   // Parse tanggal retensi
   const dateRetensi = new Date(tanggalRetensi);
   if (isNaN(dateRetensi.getTime())) {
-    document.getElementById("TANGGAL_INAKTIF").value = '';
+    tanggalInaktifPicker.clear();
     return;
   }
 
@@ -2451,7 +2533,8 @@ function calculateTanggalInaktif() {
   const month = String(dateRetensi.getMonth() + 1).padStart(2, '0');
   const day = String(dateRetensi.getDate()).padStart(2, '0');
 
-  document.getElementById("TANGGAL_INAKTIF").value = `${year}-${month}-${day}`;
+  // Set value datepicker
+  tanggalInaktifPicker.setDate(`${year}-${month}-${day}`, true);
 }
 
 // Event listener untuk tanggal retensi - recalculate tanggal inaktif ketika berubah

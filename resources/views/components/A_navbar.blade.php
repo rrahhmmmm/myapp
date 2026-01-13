@@ -21,7 +21,7 @@
          transition-transform duration-300 z-40 border-r-8 flex flex-col">
   
   <!-- Logo -->
-  <div class="p-4 border-b flex-shrink-0">
+  <div class="p-4 border-b shrink-0">
     <img src="{{ asset('images/logoarsipikt.png') }}" alt="PELINDO Logo" class="h-30 mx-auto">
   </div>
 
@@ -59,7 +59,7 @@
   </nav>
 
   <!-- Logout -->
-  <div class="p-4 border-t flex-shrink-0">
+  <div class="p-4 border-t shrink-0">
     <div class="flex items-center space-x-3 p-4">
       <img src="{{ asset('images/user.png') }}" alt="User Avatar" 
            class="w-12 h-12 rounded-full">
