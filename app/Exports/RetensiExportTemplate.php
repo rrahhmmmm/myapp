@@ -12,14 +12,14 @@ class RetensiExportTemplate implements WithHeadings,ShouldAutoSize
     public function headings(): array
     {
         return [
-            'JENIS ARSIP',
-            'BIDANG ARSIP',
-            'TIPE ARSIP',
-            'DETAIL TIPE ARSIP',
-            'MASA AKTIF',
-            'DESKRIPSI AKTIF',
-            'MASA INAKTIF',
-            'DESKRIPSI INAKTIF',
+            'JENIS_ARSIP',
+            'BIDANG_ARSIP',
+            'TIPE_ARSIP',
+            'DETAIL_TIPE ARSIP',
+            'MASA_AKTIF',
+            'DESKRIPSI_AKTIF',
+            'MASA_INAKTIF',
+            'DESKRIPSI_INAKTIF',
             'KETERANGAN'
         ];
     }
