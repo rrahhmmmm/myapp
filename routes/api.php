@@ -122,10 +122,10 @@ Route::middleware('auth:sanctum' )->group(function () {
 
     Route::get('/m_retensi/all', [M_RETENSICONTROLLER::class, 'all']);
 
-    /* INVENTARIS ROUTES - DISABLED
+    
     Route::get('m_kondisi', [M_KONDISICONTROLLER::class, 'index']);
     Route::get('/m_kondisi/all', [M_KONDISICONTROLLER::class, 'all']);
-    */
+
 
     Route::get('m_jenisnaskah', [M_JENISNASKAHCONTROLLER::class, 'index']);
     Route::get('m_jenisnaskah/all', [M_JENISNASKAHCONTROLLER::class, 'all']);
@@ -199,11 +199,11 @@ Route::middleware('auth:sanctum','role:ADMIN')->group(function () {
     Route::put('m_indeks/{id}', [M_indeksController::class, 'update']);
     Route::delete('m_indeks/{id}', [M_indeksController::class, 'destroy']);
 
-    /* INVENTARIS ROUTES - DISABLED
+ 
     Route::post('m_kondisi', [M_KONDISICONTROLLER::class, 'store']);
     Route::put('m_kondisi/{id}', [M_KONDISICONTROLLER::class, 'update']);
     Route::delete('m_kondisi/{id}', [M_KONDISICONTROLLER::class, 'destroy']);
-    */
+    
 
     Route::post('m_tingkatpengembangan', [M_TINGKATPENGEMBANGANCONTROLLER::class,'store']);
     Route::put('m_tingkatpengembangan/{id}', [M_TINGKATPENGEMBANGANCONTROLLER::class,'update']);

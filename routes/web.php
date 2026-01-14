@@ -90,11 +90,10 @@ Route::get('arsip', function () {
         return view ('jenispengembangan');
     })->name('jenispengembangan');
 
-    /* INVENTARIS ROUTES - DISABLED
     Route::get('/kondisi', function () {
         return view ('kondisi');
     })->name('kondisi');
-    */
+    
 
     Route::get('/coba', function () {
         return view ('cobacoba');
