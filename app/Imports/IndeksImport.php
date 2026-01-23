@@ -45,8 +45,6 @@ class IndeksImport implements ToCollection, WithHeadingRow
             $noIndeks = trim($row['no_indeks'] ?? $row['NO_INDEKS'] ?? '');
             $wilayah = trim($row['wilayah'] ?? $row['WILAYAH'] ?? '');
             $namaIndeks = trim($row['nama_indeks'] ?? $row['NAMA_INDEKS'] ?? '');
-            $startDate = $row['start_date'] ?? $row['START_DATE'] ?? null;
-            $endDate = $row['end_date'] ?? $row['END_DATE'] ?? null;
             $createBy = trim($row['create_by'] ?? $row['CREATE_BY'] ?? '');
 
             // Skip jika NO_INDEKS kosong
@@ -87,8 +85,6 @@ class IndeksImport implements ToCollection, WithHeadingRow
                 'NO_INDEKS'   => $noIndeks,
                 'WILAYAH'     => $wilayah ?: null,
                 'NAMA_INDEKS' => $namaIndeks ?: null,
-                'START_DATE'  => $startDate ?: null,
-                'END_DATE'    => $endDate ?: null,
                 'CREATE_BY'   => $createBy ?: (auth()->user()->username ?? 'system')
             ]);
 

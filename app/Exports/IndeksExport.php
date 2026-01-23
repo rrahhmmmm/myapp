@@ -23,8 +23,6 @@ class IndeksExport implements FromCollection,ShouldAutoSize,WithHeadings
             'NOMOR INDEKS',
             'WILAYAH',
             'NAMA INDEKS',
-            'TANGGAL MULAI',
-            'TANGGAL SELESAI',
             'DIBUAT OLEH'
         ];
     }

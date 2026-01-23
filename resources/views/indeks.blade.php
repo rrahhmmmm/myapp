@@ -82,8 +82,6 @@
                     <th class="px-4 py-3 text-left font-medium">No Indeks</th>
                     <th class="px-4 py-3 text-left font-medium">Wilayah</th>
                     <th class="px-4 py-3 text-left font-medium">Nama Indeks</th>
-                    <th class="px-4 py-3 text-left font-medium">Start Date</th>
-                    <th class="px-4 py-3 text-left font-medium">End Date</th>
                     <th class="px-4 py-3 text-left font-medium">Dibuat Oleh</th>
                     <th class="px-4 py-3 text-center font-medium">Aksi</th>
                 </tr>
@@ -155,16 +153,6 @@
                 <div class="md:col-span-2">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Nama Indeks</label>
                     <input type="text" id="namaIndeks"
-                        class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
-                    <input type="date" id="startDate"
-                        class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">End Date</label>
-                    <input type="date" id="endDate"
                         class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                 </div>
             </div>
@@ -270,8 +258,6 @@ async function loadIndeks(keyword = "", page = 1) {
                     <td class="px-6 py-4">${item.NO_INDEKS}</td>
                     <td class="px-6 py-4">${item.WILAYAH ?? '-'}</td>
                     <td class="px-6 py-4">${item.NAMA_INDEKS ?? '-'}</td>
-                    <td class="px-6 py-4">${item.START_DATE ?? '-'}</td>
-                    <td class="px-6 py-4">${item.END_DATE ?? '-'}</td>
                     <td class="px-6 py-4">${item.CREATE_BY ?? '-'}</td>
                     <td class="px-6 py-4 text-center space-x-2">
                         <button onclick="editIndeks(${item.ID_INDEKS})" class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></button>
@@ -390,8 +376,6 @@ form.addEventListener("submit", async function(e) {
         NO_INDEKS: document.getElementById("noIndeks").value,
         WILAYAH: document.getElementById("wilayah").value,
         NAMA_INDEKS: document.getElementById("namaIndeks").value,
-        START_DATE: document.getElementById("startDate").value,
-        END_DATE: document.getElementById("endDate").value,
         CREATE_BY: document.getElementById("createBy").value
     };
 
@@ -444,8 +428,6 @@ async function editIndeks(id) {
         document.getElementById("noIndeks").value = data.NO_INDEKS;
         document.getElementById("wilayah").value = data.WILAYAH ?? '';
         document.getElementById("namaIndeks").value = data.NAMA_INDEKS ?? '';
-        document.getElementById("startDate").value = data.START_DATE ?? '';
-        document.getElementById("endDate").value = data.END_DATE ?? '';
         document.getElementById("createBy").value = data.CREATE_BY ?? '';
     } catch (err) {
         console.error(err);

@@ -15,9 +15,7 @@ class IndeksExportTemplate implements WithHeadings,ShouldAutoSize
         return [
             'NO_INDEKS',
             'WILAYAH',
-            'NAMA_INDEKS',
-            'START_DATE',
-            'END_DATE'
+            'NAMA_INDEKS'
         ];
     }
 }
