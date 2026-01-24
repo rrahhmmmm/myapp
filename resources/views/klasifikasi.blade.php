@@ -82,8 +82,6 @@
                     <th class="px-4 md:px-6 py-3 text-left font-medium">Kode Klasifikasi</th>
                     <th class="px-4 md:px-6 py-3 text-left font-medium">Kategori</th>
                     <th class="px-4 md:px-6 py-3 text-left font-medium">Deskripsi</th>
-                    <th class="px-4 md:px-6 py-3 text-left font-medium">Start Date</th>
-                    <th class="px-4 md:px-6 py-3 text-left font-medium">End Date</th>
                     <th class="px-4 md:px-6 py-3 text-left font-medium">Dibuat Oleh</th>
                     <th class="px-4 md:px-6 py-3 text-center font-medium">Aksi</th>
                 </tr>
@@ -153,17 +151,7 @@
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
-                    <input type="text" id="kategori" required 
-                        class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
-                    <input type="date" id="startDate"
-                        class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">End Date</label>
-                    <input type="date" id="endDate"
+                    <input type="text" id="kategori" required
                         class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                 </div>
             </div>
@@ -289,8 +277,6 @@ async function loadKlasifikasi(keyword = "", page = 1) {
                     <td class="px-6 py-4">${item.KODE_KLASIFIKASI}</td>
                     <td class="px-6 py-4">${item.KATEGORI}</td>
                     <td class="px-6 py-4 whitespace-normal break-words max-w-xs">${item.DESKRIPSI}</td>
-                    <td class="px-6 py-4">${item.START_DATE ?? '-'}</td>
-                    <td class="px-6 py-4">${item.END_DATE ?? '-'}</td>
                     <td class="px-6 py-4">${item.CREATE_BY ?? '-'}</td>
                     <td class="px-6 py-4 text-center space-x-2">
                         <button onclick="editKlasifikasi(${item.ID_KLASIFIKASI})" class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></button>
@@ -410,8 +396,6 @@ form.addEventListener("submit", async function(e) {
         KODE_KLASIFIKASI: document.getElementById("kodeKlasifikasi").value,
         KATEGORI: document.getElementById("kategori").value,
         DESKRIPSI: document.getElementById("deskripsi").value,
-        START_DATE: document.getElementById("startDate").value,
-        END_DATE: document.getElementById("endDate").value,
         CREATE_BY: document.getElementById("createBy").value
     };
 
@@ -474,8 +458,6 @@ async function editKlasifikasi(id) {
         document.getElementById("kodeKlasifikasi").value = data.KODE_KLASIFIKASI;
         document.getElementById("kategori").value = data.KATEGORI;
         document.getElementById("deskripsi").value = data.DESKRIPSI;
-        document.getElementById("startDate").value = data.START_DATE ?? "";
-        document.getElementById("endDate").value = data.END_DATE ?? "";
         document.getElementById("createBy").value = data.CREATE_BY ?? "";
     } catch (err) {
         console.error(err);

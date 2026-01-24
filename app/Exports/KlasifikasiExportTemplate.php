@@ -19,9 +19,7 @@ class KlasifikasiExportTemplate implements FromCollection, WithHeadings,ShouldAu
             [
                 'kode_klasifikasi' => '',
                 'kategori'         => '',
-                'deskripsi'        => '',
-                'start_date'       => '',
-                'end_date'         => ''
+                'deskripsi'        => ''
             ]
         ]);
     }
@@ -34,9 +32,7 @@ class KlasifikasiExportTemplate implements FromCollection, WithHeadings,ShouldAu
         return [
             'kode_klasifikasi',
             'kategori',
-            'deskripsi',
-            'start_date',
-            'end_date'
+            'deskripsi'
         ];
     }
 }

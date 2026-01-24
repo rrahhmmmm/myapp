@@ -23,8 +23,6 @@ class KlasifikasiExport implements FromCollection,ShouldAutoSize,WithHeadings
             'KODE KLASIFIKASI',
             'KATEGORI',
             'DESKRIPSI',
-            'TANGGAL MULAI',
-            'TANGGAL SELESAI',
             'DIBUAT OLEH'
         ];
     }

@@ -57,8 +57,6 @@ class KlasifikasiImport implements ToCollection, WithHeadingRow
             $kodeKlasifikasi = trim($row['kode_klasifikasi'] ?? $row['KODE_KLASIFIKASI'] ?? '');
             $kategori = trim($row['kategori'] ?? $row['KATEGORI'] ?? '');
             $deskripsi = trim($row['deskripsi'] ?? $row['DESKRIPSI'] ?? '');
-            $startDate = $row['start_date'] ?? $row['START_DATE'] ?? null;
-            $endDate = $row['end_date'] ?? $row['END_DATE'] ?? null;
             $createBy = trim($row['create_by'] ?? $row['CREATE_BY'] ?? '');
 
             // Skip jika kode atau kategori kosong
@@ -123,8 +121,6 @@ class KlasifikasiImport implements ToCollection, WithHeadingRow
                 'KODE_KLASIFIKASI' => $kodeKlasifikasi,
                 'KATEGORI'         => $kategori,
                 'DESKRIPSI'        => $deskripsi ?: null,
-                'START_DATE'       => $startDate ?: null,
-                'END_DATE'         => $endDate ?: null,
                 'CREATE_BY'        => $createBy ?: (auth()->user()->username ?? 'system')
             ]);
 
