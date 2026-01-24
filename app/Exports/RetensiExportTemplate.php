@@ -17,9 +17,7 @@ class RetensiExportTemplate implements WithHeadings,ShouldAutoSize
             'TIPE_ARSIP',
             'DETAIL_TIPE ARSIP',
             'MASA_AKTIF',
-            'DESKRIPSI_AKTIF',
             'MASA_INAKTIF',
-            'DESKRIPSI_INAKTIF',
             'KETERANGAN'
         ];
     }

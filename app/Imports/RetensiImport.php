@@ -64,9 +64,7 @@ class RetensiImport implements ToCollection, WithHeadingRow
             $tipeArsip = trim($row['tipe_arsip'] ?? $row['TIPE_ARSIP'] ?? '');
             $detailTipeArsip = trim($row['detail_tipe_arsip'] ?? $row['DETAIL_TIPE_ARSIP'] ?? '');
             $masaAktif = $row['masa_aktif'] ?? $row['MASA_AKTIF'] ?? null;
-            $descAktif = trim($row['desc_aktif'] ?? $row['DESC_AKTIF'] ?? '');
             $masaInaktif = $row['masa_inaktif'] ?? $row['MASA_INAKTIF'] ?? null;
-            $descInaktif = trim($row['desc_inaktif'] ?? $row['DESC_INAKTIF'] ?? '');
             $keterangan = trim($row['keterangan'] ?? $row['KETERANGAN'] ?? '');
             $createBy = trim($row['create_by'] ?? $row['CREATE_BY'] ?? '');
 
@@ -114,9 +112,7 @@ class RetensiImport implements ToCollection, WithHeadingRow
                 'TIPE_ARSIP'        => $tipeArsip,
                 'DETAIL_TIPE_ARSIP' => $detailTipeArsip ?: null,
                 'MASA_AKTIF'        => $masaAktif ?: null,
-                'DESC_AKTIF'        => $descAktif ?: null,
                 'MASA_INAKTIF'      => $masaInaktif ?: null,
-                'DESC_INAKTIF'      => $descInaktif ?: null,
                 'KETERANGAN'        => $keterangan ?: null,
                 'CREATE_BY'         => $createBy ?: (auth()->user()->username ?? 'system')
             ]);

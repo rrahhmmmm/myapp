@@ -168,16 +168,8 @@
                     <input type="text" id="masaAktif" required class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Deskripsi Aktif</label>
-                    <input type="text" id="descAktif" class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                </div>
-                <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Masa Inaktif (tahun)</label>
                     <input type="text" id="masaInaktif" required class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Deskripsi Inaktif</label>
-                    <input type="text" id="descInaktif" class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                 </div>
             </div>
 
@@ -417,9 +409,7 @@ form.addEventListener("submit", async e => {
         TIPE_ARSIP: tipeArsip.value,
         DETAIL_TIPE_ARSIP: detailTipeArsip.value,
         MASA_AKTIF: masaAktif.value,
-        DESC_AKTIF: descAktif.value,
         MASA_INAKTIF: masaInaktif.value,
-        DESC_INAKTIF: descInaktif.value,
         KETERANGAN: keterangan.value,
         CREATE_BY: createBy.value
     };
@@ -472,9 +462,7 @@ async function editRetensi(id) {
         tipeArsip.value = data.TIPE_ARSIP ?? "";
         detailTipeArsip.value = data.DETAIL_TIPE_ARSIP ?? "";
         masaAktif.value = data.MASA_AKTIF ?? "";
-        descAktif.value = data.DESC_AKTIF ?? "";
         masaInaktif.value = data.MASA_INAKTIF ?? "";
-        descInaktif.value = data.DESC_INAKTIF ?? "";
         keterangan.value = data.KETERANGAN ?? "";
         createBy.value = data.CREATE_BY ?? "";
     } catch (error) {
