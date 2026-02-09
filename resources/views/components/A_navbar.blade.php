@@ -22,7 +22,7 @@
   
   <!-- Logo -->
   <div class="p-4 border-b shrink-0">
-    <img src="{{ asset('images/logoarsipikt.png') }}" alt="PELINDO Logo" class="h-30 mx-auto">
+  <img src="{{ asset('images/logosiaa.svg') }}" class="h-30 mx-auto my-12">
   </div>
 
   <!-- Menu Scrollable -->
@@ -52,7 +52,6 @@
         <a href="/divisi" class="block px-3 py-2 rounded-md hover:bg-blue-200">Divisi</a>
         <a href="/subdivisi" class="block px-3 py-2 rounded-md hover:bg-blue-200">Subdivisi</a>
         <a href="/role" class="block px-3 py-2 rounded-md hover:bg-blue-200">Role</a>
-        <a href="/terminal" class="block px-3 py-2 rounded-md hover:bg-blue-200">Terminal</a>
         <a href="/parameter" class="block px-3 py-2 rounded-md hover:bg-blue-200">Parameter</a>
       </div>
     </div>

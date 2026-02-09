@@ -12,7 +12,7 @@
   <div class="bg-white shadow-lg rounded-2xl w-full max-w-md p-8 m-8">
     <!-- Logo -->
     <div class="flex justify-center items-center">
-      <img src="{{ asset('images/iktinven.png') }}" alt="IKT Logo" class="h-48" />
+      <img src="{{ asset('images/logosiaa.svg') }}" alt="IKT Logo" class="h-48" />
     </div>
 
     <!-- Alert -->
