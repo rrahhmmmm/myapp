@@ -1,19 +1,19 @@
 <?php
-use App\Http\Controllers\M_terminalController;
+use App\Http\Controllers\M_TERMINALCONTROLLER;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\M_divisiController;
-use App\Http\Controllers\M_subdivisiController;
-use App\Http\Controllers\M_lokasiController;
-use App\Http\Controllers\M_modelController;
-use App\Http\Controllers\M_statusController;
-use App\Http\Controllers\M_indeksController;
-use App\Http\Controllers\M_klasifikasiController;
-use App\Http\Controllers\M_roleController;
-use App\Http\Controllers\M_retensiController;
-use App\Http\Controllers\M_userController;
-use App\Http\Controllers\M_parameterController;
+use App\Http\Controllers\M_DIVISICONTROLLER;
+use App\Http\Controllers\M_SUBDIVISICONTROLLER;
+use App\Http\Controllers\M_LOKASICONTROLLER;
+use App\Http\Controllers\M_MODELCONTROLLER;
+use App\Http\Controllers\M_STATUSCONTROLLER;
+use App\Http\Controllers\M_INDEKSCONTROLLER;
+use App\Http\Controllers\M_KLASIFIKASICONTROLLER;
+use App\Http\Controllers\M_ROLECONTROLLER;
+use App\Http\Controllers\M_RETENSICONTROLLER;
+use App\Http\Controllers\M_USERCONTROLLER;
+use App\Http\Controllers\M_PARAMETERCONTROLLER;
 use App\Http\Controllers\T_ARSIPCONTROLLER;
-use App\Http\COntrollers\M_JENISNASKAHCONTROLLER;
+use App\Http\Controllers\M_JENISNASKAHCONTROLLER;
 use App\Http\Controllers\M_TINGKATPENGEMBANGANCONTROLLER;
 use App\Http\Controllers\M_KONDISICONTROLLER;
 use App\Http\Controllers\M_INSTALCONTROLLER;
@@ -36,13 +36,13 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 
 Route::get('/m_subdivisi/divisi/{id}', [M_SUBDIVISICONTROLLER::class, 'getByDivisi']);
 
-Route::apiResource('m_lokasi', M_lokasiController::class);
-Route::apiResource('m_model', M_modelController::class);
-Route::apiResource('m_status', M_statusController::class);
+Route::apiResource('m_lokasi', M_LOKASICONTROLLER::class);
+Route::apiResource('m_model', M_MODELCONTROLLER::class);
+Route::apiResource('m_status', M_STATUSCONTROLLER::class);
 
 
 
-Route::apiResource('m_parameter', M_parameterController::class);
+Route::apiResource('m_parameter', M_PARAMETERCONTROLLER::class);
 
 
 
@@ -62,18 +62,18 @@ Route::get('/user/export', [M_USERCONTROLLER::class, 'exportExcel']);
 Route::get('/divisi/export', [M_DIVISICONTROLLER::class,'exportExcel']);
 Route::get('/divisi/export-template', [M_DIVISICONTROLLER::class, 'exportTemplate']);
 
-Route::get('/indeks/export', [M_indeksController::class,'exportExcel']);
-Route::get('/indeks/export-template', [M_indeksController::class, 'exportTemplate']);
+Route::get('/indeks/export', [M_INDEKSCONTROLLER::class,'exportExcel']);
+Route::get('/indeks/export-template', [M_INDEKSCONTROLLER::class, 'exportTemplate']);
 
 Route::get('/retensi/export', [M_RETENSICONTROLLER::class, 'exportExcel']);
-Route::get('/retensi/export-template', [M_RETENSIController::class, 'exportTemplate']);
+Route::get('/retensi/export-template', [M_RETENSICONTROLLER::class, 'exportTemplate']);
 
 Route::get('/subdivisi/export', [M_SUBDIVISICONTROLLER::class,'exportExcel']);
 Route::get('/subdivisi/export-template', [M_SUBDIVISICONTROLLER::class,'exportTemplate']);
 
 // id divisi for subdiv
 Route::get('/m_subdivisi/divisi/{id}', [M_SUBDIVISICONTROLLER::class, 'getByDivisi']);
-Route::get('m_divisi', [M_divisiController::class, 'index']);
+Route::get('m_divisi', [M_DIVISICONTROLLER::class, 'index']);
 
 Route::get('/m_divisi/paginated', [M_DIVISICONTROLLER::class, 'indexPaginated']);
 Route::get('/m_subdivisi/paginated', [M_SUBDIVISICONTROLLER::class, 'paginated']);
@@ -141,12 +141,12 @@ Route::middleware('auth:sanctum' )->group(function () {
     Route::get('/m_klasifikasi/all', [M_KLASIFIKASICONTROLLER::class, 'all']);
     Route::get('m_klasifikasi/{id}', [M_KLASIFIKASICONTROLLER::class, 'show']);
 
-    Route::get('m_indeks', [M_indeksController::class, 'index']);
-    Route::get('/m_indeks/all', [M_indeksController::class, 'all']);
-    Route::get('m_indeks/{id}', [M_indeksController::class, 'show']);
+    Route::get('m_indeks', [M_INDEKSCONTROLLER::class, 'index']);
+    Route::get('/m_indeks/all', [M_INDEKSCONTROLLER::class, 'all']);
+    Route::get('m_indeks/{id}', [M_INDEKSCONTROLLER::class, 'show']);
 
     Route::post('/klasifikasi/import', [M_KLASIFIKASICONTROLLER::class, 'importExcel']);
-    Route::post('/indeks/import', [M_indekscontroller::class, 'importExcel']);
+    Route::post('/indeks/import', [M_INDEKSCONTROLLER::class, 'importExcel']);
     Route::post('/retensi/import', [M_RETENSICONTROLLER::class, 'importExcel']);
 
     Route::apiResource('m_terminal', M_TERMINALCONTROLLER::class);
@@ -184,20 +184,20 @@ Route::middleware('auth:sanctum','role:ADMIN')->group(function () {
     Route::post('/terminal/import', [M_TERMINALCONTROLLER::class, 'importExcel']);
     Route::post('/divisi/import', [M_DIVISICONTROLLER::class, 'importExcel']);
     Route::post('/subdivisi/import', [M_SUBDIVISICONTROLLER::class, 'importExcel']);
-    Route::apiResource('m_subdivisi', M_subdivisiController::class);
-    Route::apiResource('m_user', M_userController::class);
-    Route::apiResource('m_role', M_roleController::class);
+    Route::apiResource('m_subdivisi', M_SUBDIVISICONTROLLER::class);
+    Route::apiResource('m_user', M_USERCONTROLLER::class);
+    Route::apiResource('m_role', M_ROLECONTROLLER::class);
 
     // master arsip
-    Route::apiResource('m_retensi', M_retensiController::class);
+    Route::apiResource('m_retensi', M_RETENSICONTROLLER::class);
 
     Route::post('m_klasifikasi', [M_KLASIFIKASICONTROLLER::class, 'store']);
     Route::put('m_klasifikasi/{id}', [M_KLASIFIKASICONTROLLER::class, 'update']);
     Route::delete('m_klasifikasi/{id}', [M_KLASIFIKASICONTROLLER::class, 'destroy']);
 
-    Route::post('m_indeks', [M_indeksController::class, 'store']);
-    Route::put('m_indeks/{id}', [M_indeksController::class, 'update']);
-    Route::delete('m_indeks/{id}', [M_indeksController::class, 'destroy']);
+    Route::post('m_indeks', [M_INDEKSCONTROLLER::class, 'store']);
+    Route::put('m_indeks/{id}', [M_INDEKSCONTROLLER::class, 'update']);
+    Route::delete('m_indeks/{id}', [M_INDEKSCONTROLLER::class, 'destroy']);
 
  
     Route::post('m_kondisi', [M_KONDISICONTROLLER::class, 'store']);
