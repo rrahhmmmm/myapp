@@ -14,7 +14,16 @@ class RetensiExport implements FromCollection,ShouldAutoSize,WithHeadings
     */
     public function collection()
     {
-        return M_retensi::all();
+        return M_retensi::select([
+            'JENIS_ARSIP',
+            'BIDANG_ARSIP',
+            'TIPE_ARSIP',
+            'DETAIL_TIPE_ARSIP',
+            'MASA_AKTIF',
+            'MASA_INAKTIF',
+            'KETERANGAN',
+            'CREATE_BY'
+        ])->get();
     }
 
     public function headings(): array
@@ -25,9 +34,7 @@ class RetensiExport implements FromCollection,ShouldAutoSize,WithHeadings
             'TIPE ARSIP',
             'DETAIL TIPE ARSIP',
             'MASA AKTIF',
-            'DESKRIPSI AKTIF',
             'MASA INAKTIF',
-            'DESKRIPSI INAKTIF',
             'KETERANGAN',
             'DIBUAT OLEH'
         ];

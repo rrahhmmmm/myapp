@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\IndeksExportTemplate;
 use App\Imports\IndeksImport;
 
-class M_indekscontroller extends Controller
+class M_INDEKSCONTROLLER extends Controller
 {
     /**
      * Helper function untuk normalize string
