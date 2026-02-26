@@ -319,7 +319,7 @@
         transform: scale(1.05);
     }
 
-    /* Nota Dinas Validation Styles */
+    /* Naskah Dinas Validation Styles */
     .nota-dinas-wrapper {
         position: relative;
     }
@@ -591,7 +591,7 @@
             <th class="sticky top-0 bg-blue-600 px-4 py-2 min-w-[150px] z-10">No Isi Berkas</th>
             <th class="sticky top-0 bg-blue-600 px-4 py-2 min-w-[150px] z-10">Jenis Naskah Dinas</th>
             <th class="sticky top-0 bg-blue-600 px-4 py-2 min-w-[150px] z-10">Kode Klasifikasi</th>
-            <th class="sticky top-0 bg-blue-600 px-4 py-2 min-w-[300px] z-10">No Nota Dinas</th>
+            <th class="sticky top-0 bg-blue-600 px-4 py-2 min-w-[300px] z-10">No Naskah Dinas</th>
             <th class="sticky top-0 bg-blue-600 px-4 py-2 min-w-[200px] z-10">Tanggal Berkas</th>
             <th class="sticky top-0 bg-blue-600 px-4 py-2 min-w-[400px] z-10">Perihal</th>
             <th class="sticky top-0 bg-blue-600 px-4 py-2 w-40 z-10">Tingkat Pengembangan</th>
@@ -802,11 +802,11 @@
         <ul id="klasifikasiSuggestions" class="absolute bg-white border border-gray-300 rounded-lg shadow-lg mt-1 w-full hidden z-50 max-h-60 overflow-y-auto"></ul>
       </div>
 
-      <!-- No Nota Dinas - UPDATED WITH CHECK BUTTON -->
+      <!-- No Naskah Dinas - UPDATED WITH CHECK BUTTON -->
       <div class="nota-dinas-wrapper">
-        <label class="block text-sm font-medium mb-1">No Nota Dinas <span class="text-red-500">*</span></label>
+        <label class="block text-sm font-medium mb-1">No Naskah Dinas <span class="text-red-500">*</span></label>
         <div class="flex gap-2">
-          <input id="NO_NOTA_DINAS" name="NO_NOTA_DINAS" class="flex-1 border rounded-lg px-3 py-2" placeholder="Masukkan nomor nota dinas" required>
+          <input id="NO_NOTA_DINAS" name="NO_NOTA_DINAS" class="flex-1 border rounded-lg px-3 py-2" placeholder="Masukkan nomor naskah dinas" required>
           <button type="button" id="checkNotaBtn" class="check-nota-btn bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 whitespace-nowrap">
             <i class="fas fa-search"></i>
             <span>Cek</span>
@@ -923,10 +923,7 @@
       <!-- Keterangan -->
       <div>
         <label class="block text-sm font-medium mb-1">Keterangan </label>
-        <select id="KETERANGAN" name="KETERANGAN" class="w-full border rounded-lg px-3 py-2">
-          <option value="AKTIF">AKTIF</option>
-          <option value="INAKTIF">INAKTIF</option>
-        </select>
+        <input type="text" id="KETERANGAN" name="KETERANGAN" readonly class="w-full border rounded-lg px-3 py-2 bg-gray-100" value="AKTIF">
         <div class="error-message" id="error_KETERANGAN"></div>
       </div>
 
@@ -1061,7 +1058,7 @@ const btnMusnahBatal = document.getElementById("btnMusnahBatal");
 const btnMusnahKonfirmasi = document.getElementById("btnMusnahKonfirmasi");
 let currentMusnahArsipId = null;
 
-// Nota Dinas validation elements
+// Naskah Dinas validation elements
 const notaDinasInput = document.getElementById("NO_NOTA_DINAS");
 const checkNotaBtn = document.getElementById("checkNotaBtn");
 const notaValidationStatus = document.getElementById("notaValidationStatus");
@@ -1103,7 +1100,7 @@ let columnFilters = {
 const colFilterDivisi = document.getElementById("colFilterDivisi");
 const colFilterSubdivisi = document.getElementById("colFilterSubdivisi");
 
-// Nota Dinas validation state
+// Naskah Dinas validation state
 let isNotaDinasValid = false;
 let lastCheckedNotaDinas = "";
 let isEditMode = false;
@@ -1125,7 +1122,7 @@ let retensiData = [];
 let jenisNaskahData = [];
 let selectedRetensiData = null; 
 
-// === NOTA DINAS VALIDATION FUNCTIONS ===
+// === NASKAH DINAS VALIDATION FUNCTIONS ===
 function updateNotaValidationUI(status, message) {
   const statusDiv = notaValidationStatus;
   const input = notaDinasInput;
@@ -1161,7 +1158,7 @@ function updateNotaValidationUI(status, message) {
 function updateSaveButtonState() {
   const notaValue = notaDinasInput.value.trim();
   
-  // If in edit mode and nota dinas hasn't changed, allow save
+  // If in edit mode and naskah dinas hasn't changed, allow save
   if (isEditMode && notaValue === originalNotaDinas) {
     saveBtn.disabled = false;
     return;
@@ -1204,7 +1201,7 @@ async function checkNotaDinas() {
   const notaValue = notaDinasInput.value.trim();
   
   if (!notaValue) {
-    updateNotaValidationUI("pending", "Masukkan nomor nota dinas terlebih dahulu");
+    updateNotaValidationUI("pending", "Masukkan nomor naskah dinas terlebih dahulu");
     isNotaDinasValid = false;
     updateSaveButtonState();
     return;
@@ -1212,7 +1209,7 @@ async function checkNotaDinas() {
   
   // If in edit mode and value hasn't changed, mark as valid
   if (isEditMode && notaValue === originalNotaDinas) {
-    updateNotaValidationUI("valid", "Nomor nota dinas tidak berubah");
+    updateNotaValidationUI("valid", "Nomor naskah dinas tidak berubah");
     isNotaDinasValid = true;
     lastCheckedNotaDinas = notaValue;
     updateSaveButtonState();
@@ -1258,7 +1255,7 @@ notaDinasInput.addEventListener("input", () => {
   
   // If in edit mode and value is same as original, mark as valid
   if (isEditMode && currentValue === originalNotaDinas) {
-    updateNotaValidationUI("valid", "Nomor nota dinas tidak berubah");
+    updateNotaValidationUI("valid", "Nomor naskah dinas tidak berubah");
     isNotaDinasValid = true;
     lastCheckedNotaDinas = currentValue;
   } else if (currentValue !== lastCheckedNotaDinas) {
@@ -1900,13 +1897,13 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
   clearErrors();
 
-  // Double check nota dinas validation
+  // Double check naskah dinas validation
   const notaValue = notaDinasInput.value.trim();
   
   // If not in edit mode or nota changed, require validation
   if (!isEditMode || notaValue !== originalNotaDinas) {
     if (!isNotaDinasValid || notaValue !== lastCheckedNotaDinas) {
-      showToast("Silakan cek nomor nota dinas terlebih dahulu!", false);
+      showToast("Silakan cek nomor naskah dinas terlebih dahulu!", false);
       notaDinasInput.focus();
       return;
     }
@@ -1993,7 +1990,7 @@ async function editArsip(id) {
     document.getElementById("modalTitle").innerText = "Edit Arsip";
     document.getElementById("arsipId").value = data.ID_ARSIP ?? "";
 
-    // Set edit mode for nota dinas validation
+    // Set edit mode for naskah dinas validation
     isEditMode = true;
     originalNotaDinas = data.NO_NOTA_DINAS ?? "";
 
@@ -2041,7 +2038,7 @@ async function editArsip(id) {
     // Setup listener untuk cek perubahan field
     setupFieldChangeListeners();
 
-    // Set nota dinas as valid (since it's existing data)
+    // Set naskah dinas as valid (since it's existing data)
     if (originalNotaDinas) {
       isNotaDinasValid = true;
       lastCheckedNotaDinas = originalNotaDinas;
@@ -2182,7 +2179,7 @@ async function loadOverdueNotifications() {
         </button>
         <div class="font-semibold text-white text-sm pr-8">${arsip.JUDUL_BERKAS ?? '-'}</div>
         <div class="text-xs text-red-100">Perihal: ${arsip.PERIHAL ?? '-'}</div>
-        <div class="text-xs text-red-100">No Nota Dinas: ${arsip.NO_NOTA_DINAS ?? '-'}</div>
+        <div class="text-xs text-red-100">No Naskah Dinas: ${arsip.NO_NOTA_DINAS ?? '-'}</div>
         <div class="text-xs text-red-100">Retensi: ${arsip.TANGGAL_RETENSI ?? '-'}</div>
       `;
       li.addEventListener('click', (e) => {
@@ -2230,7 +2227,7 @@ async function loadMusnahNotifications() {
       li.innerHTML = `
         <div class="font-semibold text-white text-sm">${arsip.JUDUL_BERKAS ?? '-'}</div>
         <div class="text-xs text-red-100">Perihal: ${arsip.PERIHAL ?? '-'}</div>
-        <div class="text-xs text-red-100">No Nota Dinas: ${arsip.NO_NOTA_DINAS ?? '-'}</div>
+        <div class="text-xs text-red-100">No Naskah Dinas: ${arsip.NO_NOTA_DINAS ?? '-'}</div>
         <div class="text-xs text-orange-100">Inaktif: ${arsip.TANGGAL_INAKTIF ?? '-'}</div>
         <div class="text-xs text-orange-200">${arsip.KETERANGAN_INAKTIF ?? '-'}</div>
       `;
